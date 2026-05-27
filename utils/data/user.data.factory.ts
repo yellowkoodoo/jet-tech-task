@@ -2,6 +2,7 @@ import { faker } from "@faker-js/faker";
 import { User, Gender, PictureType } from "../../types/user";
 import { fileURLToPath } from "url";
 import path from "path";
+import { writeFileSync, promises as fs } from "fs";
 import AppConstants from "../data/constants";
 
 // current directory
@@ -90,4 +91,36 @@ export function getAvatar(options?: { picture: PictureType }) {
         "user",
         `avatar.${PictureType[options?.picture]}`
     );
+}
+
+export function generateFile(options: {
+    picture: PictureType;
+    sizeMb: number;
+}) {
+    const targetSizeInBytes = options.sizeMb * 1024 * 1024;
+
+    let content = "";
+    while (Buffer.byteLength(content, "utf8") < targetSizeInBytes) {
+        content += faker.lorem.paragraphs(5) + "\n";
+    }
+
+    const filePath = path.join(
+        __dirname,
+        "..",
+        "..",
+        "tests",
+        "artifacts",
+        `fileOf_${options.sizeMb}Mb.${PictureType[options.picture]}`
+    );
+    writeFileSync(filePath, content);
+
+    return filePath;
+}
+
+export async function removeFile(filePath: string) {
+    try {
+        await fs.unlink(filePath);
+    } catch (error) {
+        console.error("Failed to remove file: ", error);
+    }
 }

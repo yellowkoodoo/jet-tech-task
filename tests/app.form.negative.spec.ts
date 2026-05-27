@@ -1,9 +1,11 @@
 import { test, expect } from "../utils/fixtures/appFixture";
-import { User } from "../types/user";
+import { PictureType, User } from "../types/user";
 import {
     generateUserData,
     generatePassword,
-    generateUserDataRequired
+    generateUserDataRequired,
+    generateFile,
+    removeFile
 } from "../utils/data/user.data.factory";
 import AppConstants from "../utils/data/constants";
 import { AppFormElements } from "../pages/form.page";
@@ -153,5 +155,41 @@ test.describe("Application form | Negative tests", () => {
         await expect(await app.appForm.getErrorMessageLocator()).toContainText(
             error_Captcha
         );
+    });
+
+    test("Avatar | Unsupported file type (.js)", async ({ app }) => {
+        const user: User = generateUserData();
+        user.Avatar.UploadFrom = user.Avatar.UploadFrom.replace(
+            /\.[^/.]+$/,
+            ".js"
+        );
+
+        const error_FileType = "Unsupported file type";
+
+        await app.appForm.submitApplicationForm(user);
+
+        await expect(await app.appForm.getErrorMessageLocator()).toContainText(
+            error_FileType
+        );
+    });
+
+    test("Avatar | File size exceeds the limit of 2 mb", async ({ app }) => {
+        const user: User = generateUserData();
+        user.Avatar.UploadFrom = generateFile({
+            picture: PictureType.jpeg,
+            sizeMb: 3
+        });
+
+        const error_FileSize = "File exceeds allowed size";
+
+        try {
+            await app.appForm.submitApplicationForm(user);
+
+            await expect(
+                await app.appForm.getErrorMessageLocator()
+            ).toContainText(error_FileSize);
+        } finally {
+            await removeFile(user.Avatar.UploadFrom);
+        }
     });
 });
