@@ -17,6 +17,10 @@ export default class BasePage {
         await this.waitForLoadState();
     }
 
+    async getPageTitle() {
+        await this.page.title();
+    }
+
     protected async waitForLoadState() {
         await this.page.waitForLoadState("load");
         await this.page.waitForLoadState("networkidle");
@@ -27,7 +31,7 @@ export default class BasePage {
             if (response.url().includes("") && response.status() === 200) {
             } else {
                 throw new Error(
-                    `Page response: ${response.status()} ${response.statusText()}`,
+                    `Page response: ${response.status()} ${response.statusText()}`
                 );
             }
         });

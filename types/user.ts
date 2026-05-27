@@ -4,10 +4,10 @@ export interface User {
     Email: string;
     Password: string;
     PasswordConfirm: string;
-    Avatar: Avatar;
+    Avatar?: Avatar;
 }
 
-interface Avatar {
+export interface Avatar {
     UploadFrom: string;
     File?: File;
 }
@@ -15,13 +15,14 @@ interface Avatar {
 export enum Gender {
     Male,
     Female,
-    Other,
+    Other
 }
 
 export enum PictureType {
-    png,
     jpg,
     jpeg,
-    tif,
+    png,
+    gif,
     bmp,
+    tif
 }

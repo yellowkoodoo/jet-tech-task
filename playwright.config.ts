@@ -29,7 +29,7 @@ export default defineConfig({
         video: "off",
         screenshot: "on",
         launchOptions: { slowMo: 1000 },
-        headless: false,
+        headless: false
     },
 
     expect: { timeout: 4000 },
@@ -38,7 +38,7 @@ export default defineConfig({
         {
             name: "appForm",
             testMatch: "**/tests/**.spec.ts",
-            workers: 1,
-        },
-    ],
+            workers: 2
+        }
+    ]
 });

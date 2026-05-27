@@ -2,28 +2,37 @@ import { faker } from "@faker-js/faker";
 import { User, Gender, PictureType } from "../../types/user";
 import { fileURLToPath } from "url";
 import path from "path";
+import AppConstants from "../data/constants";
 
 // current directory
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export function generateUserData(options?: { gender: Gender }) {
+export function generateUserDataRequired(options?: { gender: Gender }) {
     if (!options) {
         options = {
-            gender: faker.helpers.arrayElement([Gender.Male, Gender.Female]),
+            gender: faker.helpers.arrayElement([Gender.Male, Gender.Female])
         };
     }
 
-    const password = generatePassword();
+    const password = generatePassword({
+        length: AppConstants.password_MinLength
+    });
 
     const user: User = {
         FirstName: generateFirstName(options.gender),
         LastName: generateLastName(options.gender),
         Email: generateEmail(),
         Password: password,
-        PasswordConfirm: password,
-        Avatar: { UploadFrom: getAvatar() },
+        PasswordConfirm: password
     };
+
+    return user;
+}
+
+export function generateUserData(options?: { gender: Gender }) {
+    const user = generateUserDataRequired(options);
+    user.Avatar = { UploadFrom: getAvatar() };
 
     return user;
 }
@@ -47,16 +56,16 @@ export function generateEmail(options?: { user: User; provider: string }) {
         options && {
             firstName: options.user.FirstName,
             lastName: options.user.LastName,
-            provider: options.provider,
-        },
+            provider: options.provider
+        }
     );
 }
 
 export function generatePassword(options?: { length: number }) {
     return faker.internet.password(
         options && {
-            length: options.length,
-        },
+            length: options.length
+        }
     );
 }
 
@@ -64,10 +73,12 @@ export function getAvatar(options?: { picture: PictureType }) {
     if (!options) {
         options = {
             picture: faker.helpers.arrayElement([
-                PictureType.bmp,
                 PictureType.jpg,
+                PictureType.jpeg,
                 PictureType.png,
-            ]),
+                PictureType.gif,
+                PictureType.bmp
+            ])
         };
     }
 
@@ -77,6 +88,6 @@ export function getAvatar(options?: { picture: PictureType }) {
         "..",
         "resources",
         "user",
-        `avatar.${PictureType[options?.picture]}`,
+        `avatar.${PictureType[options?.picture]}`
     );
 }
