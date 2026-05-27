@@ -11,7 +11,6 @@ export default class FormResultPage extends BasePage {
     readonly pageTitle: string = "Form Submissions";
 
     private readonly submitButton = this.page.locator("a");
-
     private readonly getElement = (formElement: AppFormElements): Locator =>
         this.page.locator(`//strong[text()="${formElement}"]`);
 
@@ -38,7 +37,7 @@ export default class FormResultPage extends BasePage {
     private async getText(formElement: AppFormElements): Promise<string> {
         const element = this.getElement(formElement);
         return await element.evaluate(
-            (e) => e.nextSibling?.textContent?.trim() ?? " "
+            (e) => e.nextSibling?.textContent?.trim() ?? ""
         );
     }
 }

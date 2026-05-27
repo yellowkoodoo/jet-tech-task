@@ -17,7 +17,6 @@ export default class AppFormPage extends BasePage {
     private readonly sliderTrack = this.page.locator("#slider-track");
     private readonly submitButton = this.page.locator('input[type="submit"]');
     private readonly errors = this.page.locator("ul li");
-
     private readonly getInputElement = (
         formElement: AppFormElements
     ): Locator => this.page.locator(`input[name='${formElement}']`);
