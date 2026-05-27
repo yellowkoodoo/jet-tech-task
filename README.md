@@ -19,9 +19,14 @@ The framework is organized into logical modules, allowing easy navigation and si
 
 ## Instructions
 
-- to setup IDE, run `npm install` followed by `npx playwright install`
+IDE
 
-- to run tests from IDE, use `npm run pw-test`
+- to setup environment, run `npm install` followed by `npx playwright install`
+- to run tests, use `npm run pw-test`
+- to see the test report, use `npm run pw-report`
+
+GitHub
+
 - to run tests from GitHub, use ``
 
 - to see the test report in IDE, use `npm run pw-report`
