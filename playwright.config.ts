@@ -29,7 +29,7 @@ export default defineConfig({
         video: "off",
         screenshot: "on",
         launchOptions: { slowMo: 1000 },
-        headless: false
+        headless: process.env.CI ? true : false
     },
 
     expect: { timeout: 4000 },
