@@ -17,7 +17,7 @@ A Page Object Model (POM) approach with a dedicated folder structure was selecte
 
 The framework is organized into logical modules, allowing easy navigation and simplified test maintenance. Core components such as page objects, test data, utilities, configuration files, and test cases are separated into dedicated directories to improve reusability and reduce code duplication.
 
-## Instructions
+## Instructions:
 
 IDE
 
@@ -34,7 +34,7 @@ GitHub
   </a>
   (`https://yellowkoodoo.github.io/redvike-tech-task/`)
 
-## Test summary
+## Test summary:
 
 Based on the defined requirements and feature importance, the MVP-stage coverage includes **18 tests**.
 
@@ -58,17 +58,17 @@ Based on the defined requirements and feature importance, the MVP-stage coverage
 - Avatar | Unsupported file type (.js)
 - Avatar | File size exceeds the limit of 2 mb
 
-### Results
+## Results:
 
 Test results are:
 
 - 1 / 7 positive cases pass and users cannot register using avatars at all which needs immediate addressing
 - 7 / 11 negative tests pass, which sound like very basic level of validations, it posses a huge security risks as inputs are not protected from forbidden characters, potentially dangerous and huge files
 
-### Issues
+## Issues:
 
 Main issues can be found in Issues tab in GitHub
 
-### Suggestion
+## Suggestion:
 
 Main suggestions can be found in Issues tab in GitHub and Results section above
