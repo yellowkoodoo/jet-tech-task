@@ -1,4 +1,4 @@
-name: Playwright Tests (docker pages)
+name: redvike-app-form (docker pages)
 
 on:
     workflow_dispatch:
