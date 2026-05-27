@@ -29,6 +29,9 @@ GitHub
 
 - to run tests from GitHub, go to Actions -> Run the workflow
 - to see the test report, visit `https://yellowkoodoo.github.io/redvike-tech-task/`
+  <a href="https://yellowkoodoo.github.io/redvike-tech-task/" target="_blank" rel="noopener noreferrer">
+  GitHub Test Results
+  </a>
 
 ## Test summary
 
