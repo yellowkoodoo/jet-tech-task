@@ -1,5 +1,4 @@
 import { Page } from "@playwright/test";
-import { url } from "node:inspector";
 
 export default class BasePage {
     readonly page: Page;

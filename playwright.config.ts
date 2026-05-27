@@ -28,8 +28,9 @@ export default defineConfig({
         trace: "on-first-retry",
         video: "off",
         screenshot: "on",
-        launchOptions: { slowMo: 1000 },
-        headless: process.env.CI ? true : false
+        launchOptions: { slowMo: 500 },
+        headless: process.env.CI ? true : false,
+        viewport: { width: 1200, height: 1080 }
     },
 
     expect: { timeout: 4000 },
