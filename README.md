@@ -30,10 +30,10 @@ GitHub
 
 - to run tests from GitHub, go to Actions -> Run the workflow
 - to see the test report, visit
-  <a href="https://yellowkoodoo.github.io/redvike-tech-task/" target="_blank" rel="noopener noreferrer">
+  <a href="https://yellowkoodoo.github.io/jet-tech-task/" target="_blank" rel="noopener noreferrer">
   GitHub Test Results
   </a>
-  (`https://yellowkoodoo.github.io/redvike-tech-task/`)
+  (`https://yellowkoodoo.github.io/jet-tech-task/`)
 
 ## Test summary:
 
