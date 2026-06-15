@@ -71,7 +71,6 @@ test.describe("API | ORDERS", () => {
         };
 
         const created = await orderCreate(request, order1, false);
-        console.log(created);
         expect(created).toEqual(
             `Product ${order1.items[0].productId} not found`
         );
