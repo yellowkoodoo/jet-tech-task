@@ -1,4 +1,4 @@
-name: redvike-app-form (docker pages)
+name: jet-tech-task (docker pages)
 
 on:
     workflow_dispatch:
@@ -6,7 +6,7 @@ on:
             project:
                 description: "Project to run (e.g. e2e)"
                 required: false
-                default: "appForm"
+                default: "apiTests"
                 type: string
 
 jobs:
