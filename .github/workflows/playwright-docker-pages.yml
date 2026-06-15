@@ -4,36 +4,37 @@ on:
     workflow_dispatch:
         inputs:
             project:
-                description: "Project to run (e.g. e2e)"
+                description: "Project to run (e.g. apiTests)"
                 required: false
                 default: "apiTests"
                 type: string
 
 jobs:
     test:
-        timeout-minutes: 60
+        timeout-minutes: 30
         runs-on: ubuntu-latest
-
-        container:
-            image: mcr.microsoft.com/playwright:v1.57.0-noble
 
         steps:
             - name: Checkout repo
               uses: actions/checkout@v4
 
-            - name: Setup Node.js
-              uses: actions/setup-node@v4
-              with:
-                  node-version: lts/*
+            - name: Start QA sandbox
+              run: |
+                  cd qa-sandbox
+                  docker compose up -d
+                  cd ..
 
             - name: Install dependencies
               run: npm ci
 
-            - name: Install Playwright Browsers
-              run: npx playwright install --with-deps
-
             - name: Run Playwright tests
-              run: npx playwright test --project=${{ inputs.project }}
+              run: npx playwright test --project=${{ github.event.inputs.project }}
+
+            - name: Shutdown services
+              if: always()
+              run: |
+                  cd qa-sandbox
+                  docker compose down
 
             - name: Upload report
               if: always()
@@ -44,7 +45,6 @@ jobs:
                   retention-days: 30
 
     deploy-artifacts:
-        if: ${{ always() }}
         runs-on: ubuntu-latest
         needs: test
 
@@ -71,5 +71,4 @@ jobs:
                   path: out
 
             - name: Deploy to GitHub Pages
-              id: deployment
               uses: actions/deploy-pages@v4
