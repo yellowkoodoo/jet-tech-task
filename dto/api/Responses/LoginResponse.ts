@@ -1,7 +1,6 @@
-import { UserResponse } from './UserResponse'
+import { UserResponse } from "./UserResponse";
 
-export interface LoginResponse
-{
-  token: string,
-  user: UserResponse
+export interface LoginResponse {
+    token: string;
+    user: UserResponse;
 }
