@@ -14,4 +14,4 @@ RUN npm install
 COPY . .
 
 # run tests
-CMD ["npx", "playwright", "test", "--project=appForm"]
+CMD ["npx", "playwright", "test", "--project=apiTests"]

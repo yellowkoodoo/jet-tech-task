@@ -22,7 +22,7 @@ export default defineConfig({
     snapshotDir: "./tests/screenshots",
     use: {
         /* Base URL to use in actions like `await page.goto('')`. */
-        baseURL: "https://qa-task.redvike.rocks/",
+        baseURL: "http://localhost:3001",
 
         /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
         trace: "on-first-retry",
@@ -37,9 +37,9 @@ export default defineConfig({
 
     projects: [
         {
-            name: "appForm",
+            name: "apiTests",
             testMatch: "**/tests/**.spec.ts",
-            workers: 2
+            workers: 1
         }
     ]
 });
